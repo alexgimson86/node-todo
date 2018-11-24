@@ -3,6 +3,13 @@
     <input name="todo" type="text">
     <button type="submit">submit</button>
 </form>
+
+<form action="/modify" method="get">
+    enter task to be modified<br>
+    <input name="modTask" type="text"> <br> enter modified task<br>
+    <input name="taskMod" type="taskMod"><br>
+    <button type="submit">modify </button>
+</form>
 <ul>
     <% todoArray.forEach(function(element){ %>
         <li>

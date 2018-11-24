@@ -51,7 +51,7 @@ app.get("/delete", function(req, res) {
                     if (i === todoArray.length - 1) {
                         db.collection('todo').find({}).toArray(function(err, result) {
 
-                            res.render("delete.ejs", { todoArray: result })
+                            res.render("home.ejs", { todoArray: result })
                         })
                     }
                 })
@@ -60,12 +60,23 @@ app.get("/delete", function(req, res) {
         db.collection('todo').deleteMany({ to_do: todoArray }).then(function() {
             db.collection('todo').find({}).toArray(function(err, result) {
 
-                res.render("delete.ejs", { todoArray: result })
+                res.render("home.ejs", { todoArray: result })
             })
         });
     }
 });
+app.get("/modify", function(req, res) {
+    const db = req.db
+    if (req.query.modTask != null) {
+        db.collection('todo').update({ to_do: req.query.modTask }, { $set: { to_do: req.query.taskMod } })
+            .then(function() {
+                db.collection('todo').find({}).toArray(function(err, result) {
 
+                    res.render("home.ejs", { todoArray: result })
+                })
+            })
+    }
+});
 app.listen(3000, function() {
     console.log("App is listening on port 3000")
 });
