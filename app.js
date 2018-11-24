@@ -45,17 +45,27 @@ app.get("/delete", function(req, res) {
 
     //check if array or error could get thrown
     if (Array.isArray(todoArray)) {
-        todoArray.forEach(element => {
+        todoArray.forEach(function(element, i) {
             db.collection('todo').deleteMany({ to_do: element })
-        });
-    } else {
-        db.collection('todo').deleteMany({ to_do: todoArray })
-    }
-    db.collection('todo').find({}).toArray(function(err, result) {
+                .then(function() {
+                    if (i === todoArray.length - 1) {
+                        db.collection('todo').find({}).toArray(function(err, result) {
 
-        res.render("delete.ejs", { todoArray: result })
-    })
+                            res.render("delete.ejs", { todoArray: result })
+                        })
+                    }
+                })
+        })
+    } else {
+        db.collection('todo').deleteMany({ to_do: todoArray }).then(function() {
+            db.collection('todo').find({}).toArray(function(err, result) {
+
+                res.render("delete.ejs", { todoArray: result })
+            })
+        });
+    }
 });
+
 app.listen(3000, function() {
     console.log("App is listening on port 3000")
 });
