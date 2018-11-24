@@ -33,7 +33,7 @@ app.get("/results", function(req, res) {
             .then(function() {
                 db.collection('todo').find({}).toArray(function(err, result) {
                     if (err) throw err
-                    res.render("results.ejs", { todoArray: result })
+                    res.render("home.ejs", { todoArray: result })
 
                 })
             })

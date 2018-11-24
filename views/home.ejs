@@ -30,12 +30,17 @@
         <hr>
     </div>
     <div class="container">
-        <ul class="list-group">
-            <% todoArray.forEach(function(element){ %>
-                <li class="list-group-item">
-                    <%= element.to_do %>
-                </li>
-                <% }) %>
-        </ul>
+        <form class="form-group" action="/delete" method="get">
+            <ul>
+
+                <% todoArray.forEach(function(element){ %>
+                    <li class="list-group-item">
+                        <input type="checkbox" name="check" value="<%= element.to_do %>">
+                        <%= element.to_do %>
+                    </li>
+                    <% })%>
+            </ul>
+            <input class="btn btn-danger" type="submit" value="delete">
+        </form>
     </div>
     <% include partials/footer.ejs %>
