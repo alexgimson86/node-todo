@@ -1,12 +1,14 @@
-<form action="/delete" method="get">
-    <ul>
-        <% todoArray.forEach(function(element){ %>
-            <li style="list-style-type: none">
-                <input type="checkbox" name="check" value="<%= element.to_do %>">
-                <%= element.to_do %>
-            </li>
-            <% }) %>
+<% include partials/header.ejs %>
+    <form class="form-group" action="/delete" method="get">
+        <ul class="list-group">
+            <% todoArray.forEach(function(element){ %>
+                <li class="list-group-item">
+                    <input type="checkbox" name="check" value="<%= element.to_do %>">
+                    <%= element.to_do %>
+                </li>
+                <% }) %>
 
-    </ul>
-    <input type="submit" value="delete">
-</form>
+        </ul>
+        <input type="submit" value="delete">
+    </form>
+    <% include partials/footer.ejs %>
