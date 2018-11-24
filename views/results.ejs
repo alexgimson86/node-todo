@@ -1,0 +1,12 @@
+<form action="/delete" method="get">
+    <ul>
+        <% todoArray.forEach(function(element){ %>
+            <li style="list-style-type: none">
+                <input type="checkbox" name="check" value="<%= element.to_do %>">
+                <%= element.to_do %>
+            </li>
+            <% }) %>
+
+    </ul>
+    <input type="submit" value="delete">
+</form>

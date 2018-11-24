@@ -1,0 +1,12 @@
+<form action="/results" method="get">
+    enter todo item<br>
+    <input name="todo" type="text">
+    <button type="submit">submit</button>
+</form>
+<ul>
+    <% todoArray.forEach(function(element){ %>
+        <li>
+            <%= element.to_do %>
+        </li>
+        <% }) %>
+</ul>
